@@ -7,9 +7,19 @@ const Profile =({updateUser, findUserForUsername,user})=> {
     const [changeUser, setChangeUser] = useState(user);
 
     // useEffect(() => {
-    //     // findUserForUsername(changeUser)
-    //     console.log(changeUser)
-    // }, [user])
+    //     //     // findUserForUsername(changeUser)
+    //     //     console.log(changeUser)
+    //     // }, [user])
+    //     console.log("profile")
+    //     console.log(user)
+    //     if (changeUser !== "undefined" && typeof changeUser !== "undefined") {
+    //         findUserForUsername(changeUser)
+    //             .then((user)=>{setChangeUser(user)})}
+    //     // } else {
+    //     //     findUserForUsername(changeUser)
+    //     //         .then((user)=>{setChangeUser(user)})
+    //     // }
+    // }, [changeUser])
         return (
             <div>
                 {
@@ -75,7 +85,7 @@ const Profile =({updateUser, findUserForUsername,user})=> {
                                           })}
                                       placeholder="Password">{changeUser.password}</textarea>
                         </div>
-                        <Link to="/profile">
+                        <Link to="/profile/">
                             <button className="btn btn-primary btn-block"
                                     onClick={() => {
                                         findUserForUsername(changeUser)
@@ -85,7 +95,7 @@ const Profile =({updateUser, findUserForUsername,user})=> {
                         </Link>
                         <br/>
 
-                        <Link to="/petlist">
+                        <Link to={`/petlist/${changeUser.userId}`}>
                             <button className="btn btn-primary btn-block">See your post</button>
                         </Link>
                     </form>
@@ -147,5 +157,6 @@ const Profile =({updateUser, findUserForUsername,user})=> {
             </div>
         )
     }
+
 
 export default Profile
