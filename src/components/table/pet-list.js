@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import petService from "../../services/pet-service"
-import {useParams, useHistory} from "react-router-dom";
+import {useParams} from "react-router-dom";
+import { useHistory } from 'react-router'
 import petsReducer from "../../reducer/pet-reducer";
 import PetCard from "../grid/pet-card";
 
@@ -17,8 +18,14 @@ const PostTable =({
             }) =>{
 
         const {userId} = useParams()
+        const history = useHistory()
         const [editing, setEditing] = useState(false)
         const [updatePets, setUpdatePets] = useState(pets)
+
+        const refreshPage = () =>{
+
+            history.go(0)
+        }
 
 
         useEffect(() => {
@@ -31,11 +38,14 @@ const PostTable =({
 
         return(
             <div>
+                {/*{JSON.stringify(pets)}*/}
+
+                <button onClick={() => refreshPage()}>refresh to see update</button>
                 <i className="fas fa-plus-circle float-right fa-2x"
                     onClick={()=>
                         createPet(userId)}></i>
                 <h1>Post Table</h1>
-                {JSON.stringify(updatePet)}
+
 
                 <table className="table table-striped">
                     <thead>
